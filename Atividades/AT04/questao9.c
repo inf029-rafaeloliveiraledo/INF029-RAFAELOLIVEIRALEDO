@@ -165,7 +165,7 @@ int validarNascimento(char dataNascimento[20]){
     }
     // se o ano for bissexto, dia 02 pode ser no maximo 29
     // se o mes for 02, dia pode ser no maximo 28
-    if(ano1%4==0){
+    if(ano1%4==0 && ano1%100>0 || ano1%4==00 && ano1%100==0 && ano1%400==0){
         if(mes1==2){
             if(dia1>29){
                 return contNasc++;
