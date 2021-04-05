@@ -474,7 +474,7 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
             printf("Digite o semestre da disciplina %d (ex: 2019.1): ", countd1);
             setbuf(stdin,NULL);
             fgets(semestre,7,stdin); 
-            if( semestre[4]!='.' ||  (semestre[5]>2 && semestre[5]<1) ){
+            if( semestre[4]!='.' ||  semestre[5]-'0'>2 ||semestre[5]-'0'<1 ){
                 printf("Semestre Inválido.\n");
             }
             cont2++;
