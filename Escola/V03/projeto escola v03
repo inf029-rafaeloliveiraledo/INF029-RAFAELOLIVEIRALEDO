@@ -61,7 +61,7 @@ int main (){
             while(p);
         break;}
         case 4:{
-        Relatorio();
+        Relatorio(aluno,professor,disciplina);
         break;}
         default:{
         break;}
@@ -70,4 +70,3 @@ int main (){
     while(n);
     return 0;
 }
-
