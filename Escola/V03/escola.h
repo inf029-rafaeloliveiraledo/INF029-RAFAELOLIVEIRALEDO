@@ -19,6 +19,7 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
     setlocale(LC_ALL,"Portuguese");
     int i=0,cont1=0,cont2=0,cont3=0,cont4=0,cont5=0,dia,mes,ano,contcpf=0,cont=0;
     int h=11,result=0,result2,aux=0,z=1,a=12,b=1,resultado=0,resultado2,e=1;
+    int l,k,j,t;
     do{
     if(cont==0){
         printf("Digite uma das opções do menu secundário do aluno %d:\n1- Inserir ou modificar nome\n2- Inserir ou modificar Sexo\n3- Inserir ou modificar Data de Nascimento\n4- Inserir ou modificar Cpf\n"
@@ -122,19 +123,19 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
             fgets(aluno[counta1-1].cpf,TAM3-2,stdin);
             aluno[counta1-1].cpf[strlen(aluno[counta1-1].cpf)-1]='\0';
             printf("%s\n", aluno[counta1-1].cpf);
-            for(int l=0;l<=9;l++){
+            for(l=0;l<=9;l++){
                 if(aux==11){
                     printf("\nCpf inválido.");
                     contcpf++;
                 }
                 aux=0;
-                for(int k=0;k<=13;k++){
+                for(k=0;k<=13;k++){
                     if((cpf[k]-'0')==l){
                         aux++;
                     }
                 }
             }
-            for(int j=0;j<=10;j++){
+            for(j=0;j<=10;j++){
                 if((cpf[j])!='.'){
                     result+=(cpf[j]-'0')*(h-z);
                 }
@@ -182,14 +183,14 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
         }
         cont5++;
         case 6:{
-        for(int t=0;t<39;t++){
+        for(t=0;t<39;t++){
             aluno[counta1-1].nome[t]='\0';
             }
         sexo='\0';
-        for(int t=0;t<12;t++){
+        for(t=0;t<12;t++){
             aluno[counta1-1].dataNascimento[t]='\0';
         }
-        for(int t=0;t<16;t++){
+        for(t=0;t<16;t++){
             aluno[counta1-1].cpf[t]='\0';
         }
         break;}
@@ -208,6 +209,7 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
     int i=0;
     int cont=0,cont1=0,cont2=0,cont3=0,cont4=0,cont5=0,contcpf=0;
     int h=11,result=0,result2,aux=0,z=1,a=12,b=1,resultado=0,resultado2,e=1;
+    int l,k,j,t;
     do{
     if(cont==0){
         printf("Digite uma das opções do menu secundário do professor %d:\n1- Inserir ou modificar nome\n2- Inserir ou modificar Sexo\n3- Inserir ou modificar Data de Nascimento\n4- Inserir ou modificar Cpf\n"
@@ -313,19 +315,19 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
             fgets(professor[countp1-1].cpf,TAM3-2,stdin);
             professor[countp1-1].cpf[strlen(professor[countp1-1].cpf)-1]='\0';
             printf("%s\n",professor[countp1-1].cpf);
-            for(int l=0;l<=9;l++){
+            for(l=0;l<=9;l++){
                 if(aux==11){
                     printf("\nCpf inválido.");
                     contcpf++;
                 }
                 aux=0;
-                for(int k=0;k<=13;k++){
+                for(k=0;k<=13;k++){
                     if((cpf[k]-'0')==l){
                         aux++;
                     }
                 }
             }
-            for(int j=0;j<=10;j++){
+            for(j=0;j<=10;j++){
                 if((cpf[j])!='.'){
                     result+=(cpf[j]-'0')*(h-z);
                 }
@@ -372,14 +374,14 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
                 cont5++;
             break;}
             case 6:{
-            for(int t=0;t<39;t++){
+            for(t=0;t<39;t++){
                 nome[t]='\0';
             }
             sexo='\0';
-            for(int t=0;t<12;t++){
+            for(t=0;t<12;t++){
                 dataNascimento[t]='\0';
             }
-            for(int t=0;t<14;t++){
+            for(t=0;t<14;t++){
                 cpf[t]='\0';
             }
             break;}
@@ -394,7 +396,7 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
 }
 void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2],char alunos[50][TAM2],char codigo[TAM3]){
     setlocale(LC_ALL, "Portuguese");
-    int cont=0,i=0,cont1=0,cont2=0,cont3=0,cont4=0,cont5=0,k=0;
+    int cont=0,i=0,cont1=0,cont2=0,cont3=0,cont4=0,cont5=0,k=0,t;
     do{
         if(cont==0){
         printf("Digite uma das opções do menu secundário da disciplina %d:\n1- Inserir ou modificar nome\n2- Inserir ou modificar Semestre\n3- Inserir ou modificar Professor\n4- Inserir ou modificar Alunos\n"
@@ -476,19 +478,19 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
             cont5++;
             break;}
             case 6:{
-            for(int t=0;t<TAM2-1;t++){
+            for(t=0;t<TAM2-1;t++){
                 disciplina[countd1-1].nome[t]='\0';
             }
-            for(int t=0;t<TAM3-1;t++){
+            for(t=0;t<TAM3-1;t++){
                 disciplina[countd1-1].semestre[t]='\0';
             }
-            for(int t=0;t<TAM3-1;t++){
+            for(t=0;t<TAM3-1;t++){
                 disciplina[countd1-1].professor[t]='\0';
             }
-            for(int t=0;t<TAM2-1;t++){
+            for(t=0;t<TAM2-1;t++){
                 disciplina[countd1-1].alunos[countd11-1][t]='\0';
             }
-            for(int t=0;t<7;t++){
+            for(t=0;t<7;t++){
                 disciplina[countd1-1].codigo[t]='\0';
             }
             break;}
@@ -501,7 +503,7 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
         printf("Não foram cadastrados todos os dados.\n");
     }
 }
-void Relatorio(){
+void Relatorio(struct dados aluno[], struct dados professor[], struct disc disciplina[]){
     int cont=0,i=0,k=0,d=0,c=0,j=0,conter=0,t=0,aux;
     char dia[6],mes[6],string[6];
     do{
@@ -567,7 +569,7 @@ void Relatorio(){
         case 6:{
             break;}
         case 7:{
-            for(k=0;k<TAM;k++){
+           /* for(k=0;k<TAM;k++){
                 if(strlen(aluno[k].dataNascimento)==10){
                     aluno[k].dia=(aluno[k].dataNascimento[0]-'0')*10+(aluno[k].dataNascimento[1]-'0');
                     aluno[k].mes=(aluno[k].dataNascimento[3]-'0')*10+(aluno[k].dataNascimento[4]-'0');
@@ -576,9 +578,8 @@ void Relatorio(){
                     printf("%d\n", aluno[k].data);
                     }
                 }
-           /* for(k=0;k<TAM;k++){
+            for(k=0;k<TAM;k++){
                 for(j=0;j<TAM-1;j++){
-
                 }
             }*/
             break;}
@@ -667,20 +668,19 @@ void Relatorio(){
             conter=0;
             for(k=0;k<TAM;k++){
                 for(j=0;j<TAM;j++){
-                    if(strlen(disciplina[k].aluno[j])>1)
+                    if(strlen(disciplina[k].alunos[j])>1)
                         conter++;
                     }
-                        if(strlen(disciplina[k].nome)>1){
-                            if(j=TAM-1){
-                                if(conter>40){
-                                    printf("Disciplina %d- %s do professor %s extrapola 40 alunos.\n", k+1, disciplina[k].nome, disciplina[k].professor);
-                                }
+                    if(strlen(disciplina[k].nome)>1){
+                        if(j=(TAM-1)){
+                            if(conter>40){
+                                printf("Disciplina %d- %s do professor %s extrapola 40 alunos.\n", k+1, disciplina[k].nome, disciplina[k].professor);
                             }
                         }
                     }
+                }
             break;}
     }
     }
     while(i);
 }
-
