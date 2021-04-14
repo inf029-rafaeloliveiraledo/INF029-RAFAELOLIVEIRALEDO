@@ -4,11 +4,14 @@
 #include "escola.h"
 #include <string.h>
 #define TAM 50
+#define TAM2 40
+#define TAM3 20
 #define DISC 10
 int counta1=0,countp1=0,countd1=0;
 int countd11;
+
 int main (){
-    int cont=0,n=0,p=0;
+    int n=0,p=0;
     setlocale(LC_ALL, "Portuguese");
     do{
         printf("\nDigite uma das opções do menu principal:\n1- Cadastrar aluno\n2- Cadastrar Professor\n3- Cadastrar Disciplina\n4- Menu de Relatórios\n0- Encerrar o programa\n");
