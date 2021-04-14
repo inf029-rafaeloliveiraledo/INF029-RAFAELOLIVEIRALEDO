@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <stdio.h>
+#include <stdio.h> 
 #include <string.h>
 #include <locale.h>
 #define TAM 50
@@ -15,6 +15,7 @@ struct dados{
 struct disc{
     char nome[TAM2],semestre[TAM3],professor[TAM2],alunos[TAM][TAM2],codigo[TAM3];
 }disciplina[DISC];
+
 void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[TAM3], int matricula){
     setlocale(LC_ALL,"Portuguese");
     int i=0,cont1=0,cont2=0,cont3=0,cont4=0,cont5=0,dia,mes,ano,contcpf=0,cont=0;
@@ -22,8 +23,8 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
     int l,k,j,t;
     do{
     if(cont==0){
-        printf("Digite uma das opções do menu secundário do aluno %d:\n1- Inserir ou modificar nome\n2- Inserir ou modificar Sexo\n3- Inserir ou modificar Data de Nascimento\n4- Inserir ou modificar Cpf\n"
-        "5- Gerar matrícula\n6- Exluir cadastro do aluno atual\n0- Sair do menu\n", counta1);
+        printf("Digite uma das opções do menu secundário do aluno %d:\n1- Inserir ou modificar Nome\n2- Inserir ou modificar Sexo\n3- Inserir ou modificar Data de Nascimento\n4- Inserir ou modificar Cpf\n"
+        "5- Gerar matrícula\n6- Exluir cadastro do aluno atual\n0- Sair do cadastro do aluno %d\n", counta1, counta1);
         cont++;
     }
     else{
@@ -35,9 +36,8 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
             cont1=0;
             setbuf(stdin,NULL);
             printf("Digite o nome do aluno %d: ", counta1);
-            fgets(aluno[counta1-1].nome,TAM2-2,stdin);
-            aluno[counta1-1].nome[strlen(aluno[counta1-1].nome)-1]='\0';
-            printf("%s\n", aluno[counta1-1].nome);
+            fgets(nome,TAM2-2,stdin);
+            nome[strlen(nome)-1]='\0';
             if(((nome[0]-'0')>=0 && (nome[0]-'0')<=9) || ((nome[0]-'0')>=-9 && (nome[0]-'0')<=0 ) || (strlen(nome)>TAM3)){
                 printf("\nNome inválido.");
             }
@@ -47,9 +47,8 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
             cont2=0;
             setbuf(stdin,NULL);
             printf("Digite o sexo; m,f ou o para masculino, feminino ou outro: ");
-            scanf(" %c", &aluno[counta1-1].sexo);
-            printf("%c\n",aluno[counta1-1].sexo);
-            switch(aluno[counta1-1].sexo){
+            scanf(" %c", &sexo);
+            switch(sexo){
                 case 'm':
                 case 'M':
                 cont2++;
@@ -72,11 +71,10 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
         break;}
         case 3:{
             cont3=0;
-            printf("Digite a data de nascimento com barras: ");
+            printf("Digite a data de nascimento, com barras, do aluno %d: ", counta1);
             setbuf(stdin,NULL);
-            fgets(aluno[counta1-1].dataNascimento,TAM3-2,stdin);
-            aluno[counta1-1].dataNascimento[strlen(aluno[counta1-1].dataNascimento)-1]='\0';
-            printf("%s\n", aluno[counta1-1].dataNascimento);
+            fgets(dataNascimento,TAM3-2,stdin);
+            dataNascimento[strlen(dataNascimento)-1]='\0';          
             dia=(dataNascimento[0]-'0')*10;
             dia+=dataNascimento[1]-'0';
             mes=(dataNascimento[3]-'0')*10;
@@ -120,9 +118,8 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
             contcpf=0,cont4=0,h=11,result=0,aux=0,z=1,a=12,b=1,resultado=0,e=1;
             printf("Digite o cpf com ponto e hífen: ");
             setbuf(stdin,NULL);
-            fgets(aluno[counta1-1].cpf,TAM3-2,stdin);
-            aluno[counta1-1].cpf[strlen(aluno[counta1-1].cpf)-1]='\0';
-            printf("%s\n", aluno[counta1-1].cpf);
+            fgets(cpf,TAM3-2,stdin);
+            cpf[strlen(cpf)-1]='\0';
             for(l=0;l<=9;l++){
                 if(aux==11){
                     printf("\nCpf inválido.");
@@ -179,19 +176,18 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
         break;}
         case 5:{
             aluno[counta1-1].matricula=counta1;
-            printf("%d\n", aluno[counta1-1].matricula);
-        }
-        cont5++;
+            cont5++;
+        break;}
         case 6:{
         for(t=0;t<39;t++){
-            aluno[counta1-1].nome[t]='\0';
+            nome[t]='\0';
             }
         sexo='\0';
         for(t=0;t<12;t++){
-            aluno[counta1-1].dataNascimento[t]='\0';
+            dataNascimento[t]='\0';
         }
         for(t=0;t<16;t++){
-            aluno[counta1-1].cpf[t]='\0';
+            cpf[t]='\0';
         }
         break;}
         default:
@@ -200,9 +196,10 @@ void CadastroAluno(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[
     }
     while(i);
     if (cont1==0 || cont2==0 || cont3==0 || cont4==0 || cont5==0){
-        printf("Não foram digitados todos os dados.\n");
+        printf("Aviso: Não foram digitados todos os dados ou não foi gerada a matrícula.\n");
     }
 }
+
 void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char cpf[TAM3], int matricula){
     setlocale(LC_ALL,"Portuguese");
     int dia,mes,ano;
@@ -213,7 +210,7 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
     do{
     if(cont==0){
         printf("Digite uma das opções do menu secundário do professor %d:\n1- Inserir ou modificar nome\n2- Inserir ou modificar Sexo\n3- Inserir ou modificar Data de Nascimento\n4- Inserir ou modificar Cpf\n"
-        "5- Gerar matricula\n6- Excluir cadastro do professor atual\n0- Sair do menu\n", countp1);
+        "5- Gerar matricula\n6- Excluir cadastro do professor atual\n0- Sair do cadastro do professor %d\n", countp1, countp1);
         cont++;
     }
     else{
@@ -225,10 +222,9 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
             cont1=0;
             setbuf(stdin,NULL);
             printf("Digite o nome do professor %d: ", countp1);
-            fgets(professor[countp1-1].nome,TAM2-2,stdin);
-            professor[countp1-1].nome[strlen(professor[countp1-1].nome)-1]='\0';
-            printf("%s\n",professor[countp1-1].nome);
-            if(((professor[countp1-1].nome[0]-'0')>=0 && (professor[countp1-1].nome[0]-'0')<=9) || ((professor[countp1-1].nome[0]-'0')>=-9 && (professor[countp1-1].nome[0]-'0')<=0 ) || (strlen(professor[countp1-1].nome)>TAM3)){
+            fgets(nome,TAM2-2,stdin);
+            nome[strlen(nome)-1]='\0';
+            if(((nome[0]-'0')>=0 && (nome[0]-'0')<=9) || ((nome[0]-'0')>=-9 && (nome[0]-'0')<=0 ) || (strlen(nome)>TAM3)){
                 printf("\nNome inválido.");
             }
             else{
@@ -239,9 +235,8 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
             cont2=0;
             printf("Digite o sexo; m,f ou o para masculino, feminino ou outro: ");
             setbuf(stdin,NULL);
-            scanf(" %c", &professor[countp1-1].sexo);
-            printf("%c\n",professor[countp1-1].sexo);
-            switch(professor[countp1-1].sexo){
+            scanf(" %c", &sexo);
+            switch(sexo){
                 case 'm':
                 case 'M':
                 cont2++;
@@ -259,16 +254,13 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
                     printf("Sexo inválido\n.");
                 break;}
             }
-
-
         break;}
         case 3:{
             cont3=0;
             printf("Digite a data de nascimento com barras: ");
             setbuf(stdin,NULL);
-            fgets(professor[countp1-1].dataNascimento,TAM3-2,stdin);
-            professor[countp1-1].dataNascimento[strlen(professor[countp1-1].dataNascimento)-1]='\0';
-            printf("%s\n",professor[countp1-1].dataNascimento);
+            fgets(dataNascimento,TAM3-2,stdin);
+            dataNascimento[strlen(dataNascimento)-1]='\0';
             dia=(dataNascimento[0]-'0')*10;
             dia+=dataNascimento[1]-'0';
             mes=(dataNascimento[3]-'0')*10;
@@ -306,15 +298,13 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
                 }
             }
             cont3++;
-
         break;}
         case 4:{
             contcpf=0,cont4=0,h=11,result=0,aux=0,z=1,a=12,b=1,resultado=0,e=1;
             printf("Digite o cpf com ponto e hífen: ");
             setbuf(stdin,NULL);
-            fgets(professor[countp1-1].cpf,TAM3-2,stdin);
-            professor[countp1-1].cpf[strlen(professor[countp1-1].cpf)-1]='\0';
-            printf("%s\n",professor[countp1-1].cpf);
+            fgets(cpf,TAM3-2,stdin);
+            cpf[strlen(cpf)-1]='\0';
             for(l=0;l<=9;l++){
                 if(aux==11){
                     printf("\nCpf inválido.");
@@ -369,8 +359,7 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
 
             break;}
             case 5:{
-                matricula=countp1;
-                printf("%d\n", matricula);
+                professor[countp1-1].matricula=countp1;
                 cont5++;
             break;}
             case 6:{
@@ -391,16 +380,17 @@ void CadastroProfessor(char nome[TAM2],char sexo,char dataNascimento[TAM3],char 
         }
         while(i);
         if (cont1==0 || cont2==0 || cont3==0 || cont4==0 || cont5==0){
-            printf("Não foram cadastrados todos os dados.\n");
+            printf("Aviso: Não foram cadastrados todos os dados ou não foi gerada a matrícula.\n");
         }
 }
+
 void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2],char alunos[50][TAM2],char codigo[TAM3]){
     setlocale(LC_ALL, "Portuguese");
-    int cont=0,i=0,cont1=0,cont2=0,cont3=0,cont4=0,cont5=0,k=0,t;
+    int cont=0,i=0,cont1=0,cont2=0,cont3=0,cont4=0,cont5=0,t;
     do{
         if(cont==0){
         printf("Digite uma das opções do menu secundário da disciplina %d:\n1- Inserir ou modificar nome\n2- Inserir ou modificar Semestre\n3- Inserir ou modificar Professor\n4- Inserir ou modificar Alunos\n"
-        "5- Inserir ou modificar Código da disciplina\n6- Excluir cadastro feito\n0- Sair do menu\n", countd1);
+        "5- Inserir ou modificar Código da disciplina\n6- Excluir cadastro feito\n0- Sair do menu da disciplina %d\n", countd1, countd1);
         cont++;
         }
         else{
@@ -412,9 +402,9 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
             cont1=0;
             printf("Digite o nome de uma disciplina: ");
             setbuf(stdin,NULL);
-            fgets(disciplina[countd1-1].nome,TAM2-2,stdin);
-            disciplina[countd1-1].nome[strlen(disciplina[countd1-1].nome)-1]='\0';
-            if(((disciplina[countd1-1].nome[0]-'0')>=0 && (disciplina[countd1-1].nome[0]-'0')<=9) || ((disciplina[countd1-1].nome[0]-'0')>=-9 && (disciplina[countd1-1].nome[0]-'0')<=0 ) || (strlen(disciplina[countd1-1].nome)>TAM3)){
+            fgets(nome,TAM2-2,stdin);
+            nome[strlen(nome)-1]='\0';
+            if(((nome[0]-'0')>=0 && (nome[0]-'0')<=9) || ((nome[0]-'0')>=-9 && (nome[0]-'0')<=0 ) || (strlen(nome)>TAM3)){
                 printf("\nDisciplina inválida.");
             }
             cont1++;
@@ -423,10 +413,9 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
             cont2=0;
             printf("Digite o semestre da disciplina %d (ex: 2019.1): ", countd1);
             setbuf(stdin,NULL);
-            fgets(disciplina[countd1-1].semestre,TAM3-2,stdin);
-            disciplina[countd1-1].semestre[strlen(disciplina[countd1-1].semestre)-1]='\0';
-            printf("%s\n", disciplina[countd1-1].semestre);
-            if( disciplina[countd1-1].semestre[4]!='.' ||  disciplina[countd1-1].semestre[5]-'0'>2 || disciplina[countd1-1].semestre[5]-'0'<1 ){
+            fgets(semestre,TAM3-2,stdin);
+            semestre[strlen(semestre)-1]='\0';
+            if( semestre[4]!='.' ||  semestre[5]-'0'>2 || semestre[5]-'0'<1 ){
                 printf("Semestre Inválido.\n");
             }
             cont2++;
@@ -435,10 +424,9 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
             cont3=0;
             printf("Digite o professor da disciplina %d: ", countd1);
             setbuf(stdin,NULL);
-            fgets(disciplina[countd1-1].professor,TAM2-2,stdin);
-            disciplina[countd1-1].professor[strlen(disciplina[countd1-1].professor)-1]='\0';
-            printf("%s\n", professor);
-            if(((disciplina[countd1-1].professor[0]-'0')>=0 && (disciplina[countd1-1].professor[0]-'0')<=9) || ((disciplina[countd1-1].professor[0]-'0')>=-9 && (disciplina[countd1-1].professor[0]-'0')<=0 ) || (strlen(disciplina[countd1-1].professor)>TAM3)){
+            fgets(professor,TAM2-2,stdin);
+            professor[strlen(professor)-1]='\0';
+            if(((professor[0]-'0')>=0 && (professor[0]-'0')<=9) || ((professor[0]-'0')>=-9 && (professor[0]-'0')<=0 ) || (strlen(professor)>TAM3)){
                 printf("\nDisciplina inválida.");
             }
             cont3++;
@@ -451,10 +439,9 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
             scanf("%d", &countd11);
             printf("Digite o nome do aluno %d da disciplina %s: ", countd11, nome);
             setbuf(stdin,NULL);
-            fgets(disciplina[countd1-1].alunos[countd11-1],TAM2-2,stdin);
-            disciplina[countd1-1].alunos[countd11-1][strlen(disciplina[countd1-1].alunos[countd11-1])-1]='\0';
-            printf("%s\n", disciplina[countd1-1].alunos[countd11-1]);
-            if(((disciplina[countd1-1].alunos[countd11-1][0]-'0')>=0 && (disciplina[countd1-1].alunos[countd11-1][0]-'0')<=9) || ((disciplina[countd1-1].alunos[countd11-1][0]-'0')>=-9 && (disciplina[countd1-1].alunos[countd11-1][0]-'0')<=0 ) || (strlen(disciplina[countd1-1].alunos[countd11-1])>TAM3)){
+            fgets(alunos[countd11-1],TAM2-2,stdin);
+            alunos[countd11-1][strlen(alunos[countd11-1])-1]='\0';
+            if(((alunos[countd11-1][0]-'0')>=0 && (alunos[countd11-1][0]-'0')<=9) || ((alunos[countd11-1][0]-'0')>=-9 && (alunos[countd11-1][0]-'0')<=0 ) || (strlen(alunos[countd11-1])>TAM3)){
                 printf("\nAluno inválido.\n");
             }
             else{
@@ -469,29 +456,28 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
             cont5=0;
             printf("Digite o código da disciplina %s (ex: INF.029): ", nome);
             setbuf(stdin,NULL);
-            fgets(disciplina[countd1-1].codigo,9,stdin);
-            disciplina[countd1-1].codigo[strlen(disciplina[countd1-1].codigo)-1]='\0';
-            printf("%s\n", codigo);
-            if(disciplina[countd1-1].codigo[3]!='.' || (((disciplina[countd1-1].codigo[0]-'0')>=0 && (disciplina[countd1-1].codigo[0]-'0')<=9) || ((disciplina[countd1-1].codigo[0]-'0')>=-9 && (disciplina[countd1-1].codigo[0]-'0')<=-1))){
+            fgets(codigo,9,stdin);
+            codigo[strlen(codigo)-1]='\0';
+            if(codigo[3]!='.' || (((codigo[0]-'0')>=0 && (codigo[0]-'0')<=9) || ((codigo[0]-'0')>=-9 && (codigo[0]-'0')<=-1))){
                 printf("Código inválido\n.");
             }
             cont5++;
             break;}
             case 6:{
             for(t=0;t<TAM2-1;t++){
-                disciplina[countd1-1].nome[t]='\0';
+                nome[t]='\0';
             }
             for(t=0;t<TAM3-1;t++){
-                disciplina[countd1-1].semestre[t]='\0';
+                semestre[t]='\0';
             }
             for(t=0;t<TAM3-1;t++){
-                disciplina[countd1-1].professor[t]='\0';
+                professor[t]='\0';
             }
             for(t=0;t<TAM2-1;t++){
-                disciplina[countd1-1].alunos[countd11-1][t]='\0';
+                alunos[countd11-1][t]='\0';
             }
             for(t=0;t<7;t++){
-                disciplina[countd1-1].codigo[t]='\0';
+                codigo[t]='\0';
             }
             break;}
             default:
@@ -500,12 +486,13 @@ void CadastroDisciplina(char nome[TAM2],char semestre[TAM3],char professor[TAM2]
     }
     while(i);
     if (cont1==0 || cont2==0 || cont3==0 || cont4==0 || cont5==0){
-        printf("Não foram cadastrados todos os dados.\n");
+        printf("Aviso: Não foram cadastrados todos os dados.\n");
     }
 }
+
 void Relatorio(struct dados aluno[], struct dados professor[], struct disc disciplina[]){
     int cont=0,i=0,k=0,d=0,c=0,j=0,conter=0,t=0,aux;
-    char dia[6],mes[6],string[6];
+    char dia[6],mes[6],string[6],aux1[12];
     do{
     if(cont==0){
         printf("Digite um das opções do menu de relatório:\n1- Listar Alunos\n2- Listar Professores\n3- Listar Disciplinas\n4- Listar uma disciplina\n5- Listar alunos por sexo\n6- Listar alunos ordenados"
@@ -521,69 +508,103 @@ void Relatorio(struct dados aluno[], struct dados professor[], struct disc disci
     switch(i){
         case 1:{
             for(k=0;k<TAM;k++){
-                printf("Aluno %d: %s\n",k+1, aluno[k].nome);
+                if(strlen(aluno[k].nome)>1){
+                    printf("Aluno %d: %s\n",k+1, aluno[k].nome);
                 }
+            }
         break;}
         case 2:{
             for(k=0;k<TAM;k++){
-                printf("Professor %d: %s\n",k+1, professor[k].nome);
+                if(strlen(aluno[k].nome)>1){
+                    printf("Professor %d: %s\n",k+1, professor[k].nome);
                 }
+            }
         break;}
         case 3:{
             for(k=0;k<DISC;k++){
+                if(strlen(disciplina[k].nome)>1 && strlen(disciplina[k].semestre)>1 && strlen(disciplina[k].professor)>1 && strlen(disciplina[k].codigo)>1){
                 printf("Nome da disciplina %d: %s\n", k+1, disciplina[k].nome);
                 printf("Semestre da disciplina %d: %s\n", k+1, disciplina[k].semestre);
                 printf("Professor da disciplina %d: %s\n", k+1, disciplina[k].professor);
                 printf("Código da disciplina %d: %s\n", k+1,disciplina[k].codigo);
+                }
             }
         break;}
         case 4:{
             printf("Digite qual o disciplina queres listar: ");
             scanf("%d", &d);
+            if(strlen(disciplina[d].nome)>1 && strlen(disciplina[d].semestre)>1 && strlen(disciplina[d].professor)>1 && strlen(disciplina[d].codigo)>1){
             printf("Nome da disciplina %d: %s\n", d+1, disciplina[d].nome);
             printf("Semestre da disciplina %d: %s\n", d+1, disciplina[d].semestre);
             printf("Professor da disciplina %d: %s\n", d+1, disciplina[d].professor);
             for(c=0;c<TAM;c++){
-                printf("Aluno %d da disciplina: %s", c+1,disciplina[d].alunos[c]);
+                if(strlen(disciplina[d].alunos[c])>1){
+                    printf("Aluno %d da disciplina: %s", c+1,disciplina[d].alunos[c]);
+                }
             }
             printf("Código da disciplina %d: %s\n", d+1,disciplina[d].codigo);
+            }
         break;}
         case 5:{
-
-             for(k=0;k<TAM;k++){
+            for(k=0;k<TAM;k++){
                 if(aluno[k].sexo=='m'){
                     printf("Aluno %d- %s é masculino.\n",k+1, aluno[k].nome);
                 }
                 }
-             for(k=0;k<TAM;k++){
+            for(k=0;k<TAM;k++){
                 if(aluno[k].sexo=='f'){
                     printf("Aluno %d- %s é feminino.\n",k+1, aluno[k].nome);
                 }
                 }
-             for(k=0;k<TAM;k++){
+            for(k=0;k<TAM;k++){
                 if(aluno[k].sexo=='o'){
                     printf("Aluno %d- %s é outro.\n",k+1, aluno[k].nome);
                 }
                 }
         break;}
         case 6:{
+            printf(" Em desenvolvimento\n");
             break;}
         case 7:{
-           /* for(k=0;k<TAM;k++){
+            for(k=0;k<TAM;k++){
                 if(strlen(aluno[k].dataNascimento)==10){
                     aluno[k].dia=(aluno[k].dataNascimento[0]-'0')*10+(aluno[k].dataNascimento[1]-'0');
                     aluno[k].mes=(aluno[k].dataNascimento[3]-'0')*10+(aluno[k].dataNascimento[4]-'0');
                     aluno[k].ano=(aluno[k].dataNascimento[6]-'0')*1000+((aluno[k].dataNascimento[7]-'0')*100)+((aluno[k].dataNascimento[8]-'0')*10)+(aluno[k].dataNascimento[9]-'0');
-                    aluno[k].data=aluno[k].dia+aluno[k].mes+aluno[k].ano;
-                    printf("%d\n", aluno[k].data);
+                    aluno[k].data=aluno[k].dia+aluno[k].mes+aluno[k].ano; 
                     }
                 }
+            for(k=1;k<=TAM-1;k++){
+                for(j=0;j<TAM-k;j++){       
+                if(strlen(aluno[j].dataNascimento)>1){
+                        if(aluno[j].data>1){
+                            if(aluno[j].data>aluno[j+1].data){
+                                    aux=aluno[j].data;
+                                    aluno[j].data=aluno[j+1].data;
+                                    aluno[j+1].data=aux;
+                                    strcpy(aux1,aluno[j].dataNascimento);
+                                    strcpy(aluno[j].dataNascimento,aluno[j+1].dataNascimento);
+                                    strcpy(aluno[j+1].dataNascimento,aux1);
+                                    strcpy(aux1,aluno[j].nome);
+                                    strcpy(aluno[j].nome,aluno[j+1].nome);
+                                    strcpy(aluno[j+1].nome,aux1);
+                                    aux=aluno[j].matricula;
+                                    aluno[j].matricula=aluno[j+1].matricula;
+                                    aluno[j+1].matricula=aux;
+                            }
+                        }
+                    }
+                }    
+            }
+            printf("Alunos ordenados por data de nascimento: \n");
             for(k=0;k<TAM;k++){
-                for(j=0;j<TAM-1;j++){
+                if(strlen(aluno[k].dataNascimento)>1){
+                    printf("Aluno: %s // Data de Nascimento: %s // Matrícula: %d //\n",aluno[k].nome,aluno[k].dataNascimento,aluno[k].matricula);
                 }
-            }*/
+                
+            }
             break;}
-        case 8:{
+            case 8:{
              for(k=0;k<TAM;k++){
                 if(professor[k].sexo=='m'){
                     printf("Professor %d- %s é masculino.\n",k+1, professor[k].nome);
@@ -601,10 +622,46 @@ void Relatorio(struct dados aluno[], struct dados professor[], struct disc disci
                 }
             break;}
         case 9:{
-            printf(" Em desenvolvimento\n");
-            break;}
+           printf("Em desenvolvimento.\n"); 
+        break;}
         case 10:{
-            printf(" Em desenvolvimento\n");
+            for(k=0;k<TAM;k++){
+                if(strlen(professor[k].dataNascimento)==10){
+                    professor[k].dia=(professor[k].dataNascimento[0]-'0')*10+(professor[k].dataNascimento[1]-'0');
+                    professor[k].mes=(professor[k].dataNascimento[3]-'0')*10+(professor[k].dataNascimento[4]-'0');
+                    professor[k].ano=(professor[k].dataNascimento[6]-'0')*1000+((professor[k].dataNascimento[7]-'0')*100)+((professor[k].dataNascimento[8]-'0')*10)+(professor[k].dataNascimento[9]-'0');
+                    professor[k].data=professor[k].dia+professor[k].mes+professor[k].ano;
+                    }
+                }
+            for(k=1;k<=TAM-1;k++){
+                for(j=0;j<TAM-k;j++){       
+                if(strlen(professor[j].dataNascimento)>1){
+                        if(professor[j].data>1){
+                            if(professor[j].data>professor[j+1].data){
+                                    aux=professor[j].data;
+                                    professor[j].data=professor[j+1].data;
+                                    professor[j+1].data=aux;
+                                    strcpy(aux1,professor[j].dataNascimento);
+                                    strcpy(professor[j].dataNascimento,professor[j+1].dataNascimento);
+                                    strcpy(professor[j+1].dataNascimento,aux1);
+                                    strcpy(aux1,professor[j].nome);
+                                    strcpy(professor[j].nome,professor[j+1].nome);
+                                    strcpy(professor[j+1].nome,aux1);
+                                    aux=professor[j].matricula;
+                                    professor[j].matricula=professor[j+1].matricula;
+                                    professor[j+1].matricula=aux;
+                            }
+                        }
+                    }
+                }    
+            }
+            printf("Professores ordenados por data de nascimento: \n");
+            for(k=0;k<TAM;k++){
+                if(strlen(professor[k].dataNascimento)>1){
+                    printf("Professor: %s // Data de Nascimento: %s // Matrícula: %d //\n",professor[k].nome,professor[k].dataNascimento,professor[k].matricula);
+                }
+                
+            }
             break;}
         case 11:{
             printf("Digite o dia de nascimento: ");
@@ -672,7 +729,7 @@ void Relatorio(struct dados aluno[], struct dados professor[], struct disc disci
                         conter++;
                     }
                     if(strlen(disciplina[k].nome)>1){
-                        if(j=(TAM-1)){
+                        if(j==TAM-1){
                             if(conter>40){
                                 printf("Disciplina %d- %s do professor %s extrapola 40 alunos.\n", k+1, disciplina[k].nome, disciplina[k].professor);
                             }
