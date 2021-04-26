@@ -1009,10 +1009,6 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
         qtdOcorrencias=0;
         return qtdOcorrencias;
     }
-    if(strcmp(strTexto,strBusca)==0){
-        qtdOcorrencias=1;
-        return qtdOcorrencias;
-    }
     for(i=0,j=0;j<strlen(strBusca) && i<strlen(strTexto);){
         if(strTexto[i]==strBusca[j]){
             x++;
