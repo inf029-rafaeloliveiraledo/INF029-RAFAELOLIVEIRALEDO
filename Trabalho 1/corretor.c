@@ -18,6 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <wchar.h>
 
 //renomeie o arquivo do include abaixo para PrimeiroUltimoNomeMATRICULA.c
 #include "RafaelLedo2019116039.h"
@@ -163,8 +164,8 @@ void testQ2()
 
 void testQ3()
 {
-    char str[250];
-    strcpy(str, "Renato Lima Novais");
+    wchar_t str[250];
+    wcscpy(str, L"Renato Lima Novais");
     printf("%d\n", q3(str, 'a', 0) == 3);
     printf("%d\n", q3(str, 'b', 0) == 0);
     printf("%d\n", q3(str, 'l', 1) == 0);
@@ -174,16 +175,16 @@ void testQ3()
 
 void testQ4()
 {
-    char strTexto[250];
-    char strBusca[50];
+    wchar_t strTexto[250];
+    wchar_t strBusca[50];
     int posicoes[30];
     int i;
     for (i = 0; i < 30; i++)
     {
         posicoes[i] = -1;
     }
-    strcpy(strTexto, "Laboratorio de programacao: para ratos de programação");
-    strcpy(strBusca, "rato");
+    wcscpy(strTexto, L"Laboratorio de programacao: para ratos de programação");
+    wcscpy(strBusca, L"rato");
     printf("%d\n", q4(strTexto, strBusca, posicoes) == 2);
     printf("%d\n", posicoes[0] == 5);
     printf("%d\n", posicoes[1] == 8);
@@ -194,8 +195,8 @@ void testQ4()
     {
         posicoes[i] = -1;
     }
-    strcpy(strTexto, "Olá, o mundo é muito grande. Tem muitas pessoas, e muitos problemas");
-    strcpy(strBusca, "mui");
+    wcscpy(strTexto, L"Olá, o mundo é muito grande. Tem muitas pessoas, e muitos problemas");
+    wcscpy(strBusca, L"mui");
     printf("%d\n", q4(strTexto, strBusca, posicoes) == 3);
     printf("%d\n", posicoes[0] == 16);
     printf("%d\n", posicoes[1] == 18);
