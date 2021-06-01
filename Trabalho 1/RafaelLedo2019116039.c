@@ -15,7 +15,6 @@
 //  email: rafaeloliveiraledo@gmail.com
 //  Matrícula: 2019116039
 //  Semestre: 2021.1
-
 //  Copyright © 2016 Renato Novais. All rights reserved.
 // Última atualização: 20/06/2018 - 19/08/2016
 
@@ -25,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
+#include <wchar.h>
 /*
 ## função utilizada para testes  ##
     somar = somar dois valores
@@ -438,122 +438,122 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
  @saida
     Um número n >= 0.
  */
-int q3(char *texto, char c, int isCaseSensitive)
+int q3(wchar_t *texto, wchar_t c, int isCaseSensitive)
 {
     int qtdOcorrencias = 0,i;
 
     for(i=0;i<=1;i++){
-        switch(c){
-            case 'á':
-            case 'â':
-            case 'à':
-            case 'ä':
-            case 'ã':
+        switch(c){  
+            case L'á':
+            case L'â':
+            case L'à':
+            case L'ä':
+            case L'ã':
             c='a';
             break;
-            case 'Á':
-            case 'Â':
-            case 'À':
-            case 'Ä':
-            case 'Ã':
+            case L'Á':
+            case L'Â':
+            case L'À':
+            case L'Ä':
+            case L'Ã':
             c='A';
             break;
-            case 'é':
-            case 'ê':
-            case 'è':
-            case 'ë':
+            case L'é':
+            case L'ê':
+            case L'è':
+            case L'ë':
             c='e';
             break;
-            case 'É':
-            case 'Ê':
-            case 'È':
-            case 'Ë':
+            case L'É':
+            case L'Ê':
+            case L'È':
+            case L'Ë':
             c='E';
             break;
-            case 'í':
-            case 'î':
-            case 'ì':
-            case 'ï':
+            case L'í':
+            case L'î':
+            case L'ì':
+            case L'ï':
             c='i';
             break;
-            case 'Í':
-            case 'Î':
-            case 'Ì':
-            case 'Ï':
+            case L'Í':
+            case L'Î':
+            case L'Ì':
+            case L'Ï':
             c='I';
-            case 'ó':
-            case 'ô':
-            case 'ò':
-            case 'ö':
-            case 'õ':
-            c='i';
+            case L'ó':
+            case L'ô':
+            case L'ò':
+            case L'ö':
+            case L'õ':
+            c='o';
             break;
-            case 'Ó':
-            case 'Ô':
-            case 'Ò':
-            case 'Ö':
-            case 'Õ':
+            case L'Ó':
+            case L'Ô':
+            case L'Ò':
+            case L'Ö':
+            case L'Õ':
             c='O';
             break;
         }
     }
-    for(i=0;i<=strlen(texto);i++){
+    for(i=0;i<=wcslen(texto);i++){
         switch(texto[i]){
-            case 'á':
-            case 'â':
-            case 'à':
-            case 'ä':
-            case 'ã':
+            case L'á':
+            case L'â':
+            case L'à':
+            case L'ä':
+            case L'ã':
             texto[i]='a';
             break;
-            case 'Á':
-            case 'Â':
-            case 'À':
-            case 'Ä':
-            case 'Ã':
+            case L'Á':
+            case L'Â':
+            case L'À':
+            case L'Ä':
+            case L'Ã':
             texto[i]='A';
             break;
-            case 'é':
-            case 'ê':
-            case 'è':
-            case 'ë':
+            case L'é':
+            case L'ê':
+            case L'è':
+            case L'ë':
             texto[i]='e';
             break;
-            case 'É':
-            case 'Ê':
-            case 'È':
-            case 'Ë':
+            case L'É':
+            case L'Ê':
+            case L'È':
+            case L'Ë':
             texto[i]='E';
             break;
-            case 'í':
-            case 'î':
-            case 'ì':
-            case 'ï':
+            case L'í':
+            case L'î':
+            case L'ì':
+            case L'ï':
             texto[i]='i';
             break;
-            case 'Í':
-            case 'Î':
-            case 'Ì':
-            case 'Ï':
+            case L'Í':
+            case L'Î':
+            case L'Ì':
+            case L'Ï':
             texto[i]='I';
-            case 'ó':
-            case 'ô':
-            case 'ò':
-            case 'ö':
-            case 'õ':
-            texto[i]='i';
+            case L'ó':
+            case L'ô':
+            case L'ò':
+            case L'ö':
+            case L'õ':
+            texto[i]='o';
             break;
-            case 'Ó':
-            case 'Ô':
-            case 'Ò':
-            case 'Ö':
-            case 'Õ':
+            case L'Ó':
+            case L'Ô':
+            case L'Ò':
+            case L'Ö':
+            case L'Õ':
             texto[i]='O';
             break;
         }
     }
     if(isCaseSensitive){
-        for(i=0;i<strlen(texto);i++){
+        for(i=0;i<wcslen(texto);i++){
             switch(c){
                 case 'A':
                 if(texto[i]=='A'){
@@ -819,161 +819,161 @@ int q3(char *texto, char c, int isCaseSensitive)
         }
     }
     if(isCaseSensitive!=1){
-        for(i=0;i<strlen(texto);i++){
+        for(i=0;i<wcslen(texto);i++){
             switch(c){
-                case 'A':
-                case 'a':
-                if(texto[i]=='A'|| texto[i]=='a'){
+                case L'A':
+                case L'a':
+                if(texto[i]==L'A'|| texto[i]==L'a'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'B':
-                case 'b':
-                if(texto[i]=='B'|| texto[i]=='b'){
+                case L'B':
+                case L'b':
+                if(texto[i]==L'B'|| texto[i]==L'b'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'C':
-                case 'c':
-                if(texto[i]=='C'|| texto[i]=='c'){
+                case L'C':
+                case L'c':
+                if(texto[i]==L'C'|| texto[i]==L'c'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'D':
-                case 'd':
-                if(texto[i]=='D'|| texto[i]=='d'){
+                case L'D':
+                case L'd':
+                if(texto[i]==L'D'|| texto[i]==L'd'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'E':
-                case 'e':
-                if(texto[i]=='E'|| texto[i]=='e'){
+                case L'E':
+                case L'e':
+                if(texto[i]==L'E'|| texto[i]==L'e'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'F':
-                case 'f':
-                if(texto[i]=='F'|| texto[i]=='f'){
+                case L'F':
+                case L'f':
+                if(texto[i]==L'F'|| texto[i]==L'f'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'G':
-                case 'g':
-                if(texto[i]=='G'|| texto[i]=='g'){
+                case L'G':
+                case L'g':
+                if(texto[i]==L'G'|| texto[i]==L'g'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'H':
-                case 'h':
-                if(texto[i]=='H'|| texto[i]=='h'){
+                case L'H':
+                case L'h':
+                if(texto[i]==L'H'|| texto[i]==L'h'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'I':
-                case 'i':
-                if(texto[i]=='I'|| texto[i]=='i'){
+                case L'I':
+                case L'i':
+                if(texto[i]==L'I'|| texto[i]==L'i'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'J':
-                case 'j':
-                if(texto[i]=='J'|| texto[i]=='j'){
+                case L'J':
+                case L'j':
+                if(texto[i]==L'J'|| texto[i]==L'j'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'K':
-                case 'k':
-                if(texto[i]=='K'|| texto[i]=='k'){
+                case L'K':
+                case L'k':
+                if(texto[i]==L'K'|| texto[i]==L'k'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'L':
-                case 'l':
-                if(texto[i]=='L'|| texto[i]=='l'){
+                case L'L':
+                case L'l':
+                if(texto[i]==L'L'|| texto[i]==L'l'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'M':
-                case 'm':
-                if(texto[i]=='M'|| texto[i]=='m'){
+                case L'M':
+                case L'm':
+                if(texto[i]==L'M'|| texto[i]==L'm'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'N':
-                case 'n':
-                if(texto[i]=='N'|| texto[i]=='n'){
+                case L'N':
+                case L'n':
+                if(texto[i]==L'N'|| texto[i]==L'n'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'O':
-                case 'o':
-                if(texto[i]=='O'|| texto[i]=='o'){
+                case L'O':
+                case L'o':
+                if(texto[i]==L'O'|| texto[i]==L'o'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'P':
-                case 'p':
-                if(texto[i]=='P'|| texto[i]=='p'){
+                case L'P':
+                case L'p':
+                if(texto[i]==L'P'|| texto[i]==L'p'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'Q':
-                case 'q':
-                if(texto[i]=='Q'|| texto[i]=='q'){
+                case L'Q':
+                case L'q':
+                if(texto[i]==L'Q'|| texto[i]==L'q'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'R':
-                case 'r':
-                if(texto[i]=='R'|| texto[i]=='r'){
+                case L'R':
+                case L'r':
+                if(texto[i]==L'R'|| texto[i]==L'r'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'S':
-                case 's':
-                if(texto[i]=='S'|| texto[i]=='s'){
+                case L'S':
+                case L's':
+                if(texto[i]==L'S'|| texto[i]==L's'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'T':
-                case 't':
-                if(texto[i]=='T'|| texto[i]=='t'){
+                case L'T':
+                case L't':
+                if(texto[i]==L'T'|| texto[i]==L't'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'U':
-                case 'u':
-                if(texto[i]=='U'|| texto[i]=='u'){
+                case L'U':
+                case L'u':
+                if(texto[i]==L'U'|| texto[i]==L'u'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'V':
-                case 'v':
-                if(texto[i]=='V'|| texto[i]=='v'){
+                case L'V':
+                case L'v':
+                if(texto[i]==L'V'|| texto[i]==L'v'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'W':
-                case 'w':
-                if(texto[i]=='W'|| texto[i]=='w'){
+                case L'W':
+                case L'w':
+                if(texto[i]==L'W'|| texto[i]==L'w'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'X':
-                case 'x':
-                if(texto[i]=='X'|| texto[i]=='x'){
+                case L'X':
+                case L'x':
+                if(texto[i]==L'X'|| texto[i]==L'x'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'Y':
-                case 'y':
-                if(texto[i]=='Y'|| texto[i]=='y'){
+                case L'Y':
+                case L'y':
+                if(texto[i]==L'Y'|| texto[i]==L'y'){
                     qtdOcorrencias++;
                 }
                 break;
-                case 'Z':
-                case 'z':
-                if(texto[i]=='Z'|| texto[i]=='z'){
+                case L'Z':
+                case L'z':
+                if(texto[i]==L'Z'|| texto[i]==L'z'){
                     qtdOcorrencias++;
                 }
                 break;
@@ -1001,20 +1001,20 @@ int q3(char *texto, char c, int isCaseSensitive)
         Observe que o índice da posição no texto deve começar ser contado a partir de 1.
         O retorno da função, n, nesse caso seria 1;
  */
-int q4(char *strTexto, char *strBusca, int posicoes[30])
+int q4(wchar_t *strTexto, wchar_t *strBusca, int posicoes[30])
 {
     int qtdOcorrencias = 0,i,j,x=0,d=0;
     int inicio,fim;
-    if(strlen(strTexto)<strlen(strBusca)){
+    if(wcslen(strTexto)<wcslen(strBusca)){
         qtdOcorrencias=0;
         return qtdOcorrencias;
     }
-    for(i=0,j=0;j<strlen(strBusca) && i<strlen(strTexto);){
+    for(i=0,j=0;j<wcslen(strBusca) && i<wcslen(strTexto);){
         if(strTexto[i]==strBusca[j]){
             x++;
             i++;
             j++;
-            if(x==strlen(strBusca)){
+            if(x==wcslen(strBusca)){
                 posicoes[d]=i-x+1;
                 d++;
                 posicoes[d]=i;
