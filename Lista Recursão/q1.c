@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-// Façaa uma função recursiva que calcule e retorne o fatorial de um número inteiro N
+// Faça uma função recursiva que calcule e retorne o fatorial de um número inteiro N
 int fat(int n)
 {
     if(n==2)
