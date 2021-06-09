@@ -13,8 +13,8 @@ int fat(int n)
 int main()
 {
     int n=0, fat1=0;
+    printf("Digite um número para se calcular o fatorial: ");
     scanf("%d", &n);
-    fat1= fat(n);
-    printf("%d\n", fat1);
+    printf("%d\n", fat(n));
     return 0;
 }
