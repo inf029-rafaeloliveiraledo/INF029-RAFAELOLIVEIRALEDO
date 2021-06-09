@@ -25,7 +25,4 @@ int main(){
     printf("Digite um número e outro para checar quantas vezes se repete no primeiro: ");
     scanf("%d%d", &n,&k);
     printf("%d\n", contar(n,k));
-    printf("Digite um número e outro para checar quantas vezes se repete no primeiro: ");
-    scanf("%d%d", &n,&k);
-    printf("%d\n", contar(n,k));
 }
