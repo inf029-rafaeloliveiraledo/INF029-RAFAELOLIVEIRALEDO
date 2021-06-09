@@ -1,29 +1,39 @@
 #include <stdlib.h>
 #include <stdio.h>
-int cont=0,numE=0;;
+#define TAM 100
 /*Crie um programa em C que receba um vetor de números reais com 100 elementos.
 Escreva uma função recursiva que inverta ordem dos elementos presentes no vetor. */
-float inverte(float *vet)
-{
-    if(cont==0)
-    {
-        printf("%.2f", vet[cont]);
+
+float inverte(float *vet, int tam){
+    static int aux=0,cont = 0;
+    aux=vet[tam-1];
+    vet[tam-1]=vet[cont];
+    vet[cont]=aux;
+    cont++;
+    if(cont==tam+1){
+        aux=0,cont = 0;
         return 0;
     }
-    printf("%.2f ", vet[cont]);
-    cont--;
-    return inverte(vet);
+    inverte(vet,tam-1);
 }
+
 int main()
 {
-    float vet[100];
-    printf("Digite quantos elementos vai preencher: "); 
-    scanf("%d", &numE);
-    cont = numE - 1;
-    for(int i=0; i<numE; i++)
-    {
-        scanf("%f", &vet[i]);
+    float vet[TAM];
+    int c;
+    
+    for(int i =0; i<TAM; i++){
+        vet[i]=i+1;
     }
-    inverte(vet);
+    do{
+        inverte(vet,TAM);
+        for(int i = 0; i<TAM; i++){
+            printf("%.2f\n", vet[i]);
+        }
+        printf("\nContinuar: 1\nSair: 0\n");
+        scanf("%d", &c);
+    }
+    while(c);
     free(vet);
 }   
+
