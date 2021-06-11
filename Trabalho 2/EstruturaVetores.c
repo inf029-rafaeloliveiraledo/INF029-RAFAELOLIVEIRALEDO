@@ -241,11 +241,11 @@ int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[]){
         return retorno;
     }
     if(posicao >= 1 && posicao <= Principal[posicao - 1].tamanho){
-        for(int k =0;k < Principal[posicao - 1].cont;k++){
-            for(int i=0,aux=0;i < Principal[posicao - 1].cont;i++){
-                if(vetorAux[i] > vetorAux[i + 1]){
-                    aux=vetorAux[i + 1];
-                    vetorAux[i + 1] = vetorAux[i];
+        for(int k =0;k < Principal[posicao - 1].cont-1;k++){
+            for(int i=0,aux=0;i < Principal[posicao - 1].cont-1;i++){
+                if((Principal[posicao-1].p[i] > Principal[posicao-1].p[i + 1])){
+                    aux=Principal[posicao-1].p[i + 1];
+                    vetorAux[i + 1] = Principal[posicao-1].p[i];
                     vetorAux[i] = aux;
                 }
             }
@@ -392,8 +392,10 @@ void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[]){
 
 void destruirListaEncadeadaComCabecote(No **inicio)
 {
-    free(*inicio);
-    *inicio = NULL;
+    for(No *ant = *inicio; *inicio != NULL; ant = *inicio,*inicio = (*inicio) -> prox){
+        *inicio = (*inicio) -> prox;
+        free(ant);
+    }
 }
 
 /*
