@@ -2,10 +2,11 @@
 #include <stdio.h>
 #define TAM 5
 
+// v 07:02 12/06/2021
+
 // Faça uma função recursiva que permita somar os elementos de um vetor de inteiros
 
-int somaElementos (int *p)
-{
+int somaElementos (int *p){
     static int cont=0, soma=0;
     if(cont==TAM){
         int retorno = soma;
@@ -19,8 +20,9 @@ int somaElementos (int *p)
 
 int main(){
     int *vet= malloc(TAM*sizeof(int));
-    int continuar=1;
+    int c;
     do{
+        printf("Digite %d elementos para serem somados: \n", TAM);
         for(int i = 0; i< TAM; i++){
             printf("Digite o elemento %d: ", i+1);
             printf("\n");
@@ -28,11 +30,10 @@ int main(){
         }
         int result = 0;
         result = somaElementos(vet);
-        printf("%d", result);
+        printf("Soma: %d", result);
         free(vet);
-        printf("\nProsseguir/Iniciar/Continuar (1) Sair (0)\n");
-        scanf("%d", &continuar);
+        printf("\nDeseja continuar? Sim (1) Não (0)\n");
+        scanf("%d", &c);
     }
-    while(continuar);
+    while(c);
 }
-

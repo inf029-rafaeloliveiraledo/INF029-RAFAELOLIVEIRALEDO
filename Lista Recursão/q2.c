@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*Faça uma função recursiva que calcule e retorne o N-�simo termo da sequência
+// v 06:57 12/06/2021
+
+/*Faça uma função recursiva que calcule e retorne o N-ésimo termo da sequência
 Fibonacci. Alguns números desta sequência são: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89... */
 
 int fib(int n)
@@ -15,8 +17,14 @@ int fib(int n)
 
 int main()
 {
-    int n=0,fib1=0 ;
-    scanf("%d", &n);
-    fib1= fib(n);
-    printf("%d\n", fib1);
+    int n=0,fib1=0,c;
+    do{
+        printf("Digite o termo 'n' da sequência de fibonacci para imprimir: ");
+        scanf("%d", &n);
+        fib1= fib(n-1);
+        printf("%d\n", fib1);
+        printf("Deseja continuar? Sim (1) Não (0)\n");
+        scanf("%d", &c);
+    }
+    while(c);
 }
